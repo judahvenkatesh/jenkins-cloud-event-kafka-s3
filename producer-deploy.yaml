@@ -15,7 +15,7 @@ spec:
         app.kubernetes.io/name: producer-load-balancer
     spec:
       containers:
-      - image: kafka-producer-python:1.0.2
+      - image: docker.io/kafka-producer-python:1.0.2
         name: kafka-producer-container
         ports:
         - containerPort: 5000
