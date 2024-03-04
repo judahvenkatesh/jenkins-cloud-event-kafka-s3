@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: consumer-load-balancer
+  name: kafka-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: consumer-load-balancer
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: consumer-load-balancer
+    spec:
+      containers:
+      - image: kafka-consumer-python:1.0.1
+        name: kafka-consumer-container
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: pullCred
