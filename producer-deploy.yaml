@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: producer-load-balancer
+  name: kafka-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: producer-load-balancer
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: producer-load-balancer
+    spec:
+      containers:
+      - image: kafka-producer-python:1.0.2
+        name: kafka-producer-container
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: pullCred 
